@@ -9,3 +9,7 @@
 ## practice-oauth2
 
 스프링부트, oauth2, google api login 구글계정을 통해서 단순 로그인 기능 구현
+
+## practice-restapi
+
+스프링부트, 웹, mybatis, mysql을 활용한 간단한 Restful API 서버 구현

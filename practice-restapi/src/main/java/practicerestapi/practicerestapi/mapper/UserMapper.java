@@ -1,0 +1,55 @@
+package practicerestapi.practicerestapi.mapper;
+
+import org.apache.ibatis.annotations.*;
+import practicerestapi.practicerestapi.domain.User;
+
+import java.util.List;
+
+@Mapper
+public interface UserMapper {
+    /**
+     * 신규유저 추가
+     * @param user 신규유저 정보
+     * @return 1 = 성공 / 0 = 실패
+     */
+    @Insert("INSERT INTO user(user_email, user_password) VALUES(#{user.email}, #{user.password})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insert(@Param("user") User user);
+
+    /**
+     * 모든유저 조회
+     * @return 모든유저정보
+     */
+    @Select("SELECT * FROM user")
+    @Results(id="UserMap", value = {
+            @Result(property = "email", column = "user_email"),
+            @Result(property = "password", column = "user_password")
+    })
+    List<User> getAll();
+
+    /**
+     * 유저테이블 id로 유저조회
+     * @param id 유저테이블 id
+     * @return 해당유저정보
+     */
+    @Select("SELECT * FROM user WHERE id = #{id}")
+    @ResultMap("UserMap")
+    User getById(@Param("id") int id);
+
+    /**
+     * 유저정보 수정
+     * @param user 수정할 유저정보
+     * @return true = 성공 / false = 실패
+     */
+    @Update("UPDATE user SET user_email=#{user.email}, user_password=#{user.password} WHERE id=#{user.id}")
+    @ResultMap("UserMap")
+    boolean update(@Param("user") User user);
+
+    /**
+     * 유저정보 삭제
+     * @param id 삭제할 유저의 테이블 id
+     * @return true = 성공 / false = 실패
+     */
+    @Delete("DELETE FROM user WHERE id = #{id}")
+    boolean deleteById(@Param("id") int id);
+}
