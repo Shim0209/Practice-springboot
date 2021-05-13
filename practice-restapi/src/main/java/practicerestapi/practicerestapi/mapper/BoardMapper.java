@@ -13,8 +13,8 @@ public interface BoardMapper {
      * @param board 등록할 게시물 정보
      * @return 1 = 성공 / 0 = 실패
      */
-    @Insert("INSERT INTO board(board_title, board_content, user_id, registed_date) " +
-            "VALUES(#{board.title},#{board.content},#{board.userId},#{board.registedDate})")
+    @Insert("INSERT INTO board(board_title, board_content, user_id, registered_date) " +
+            "VALUES(#{board.title},#{board.content},#{board.userId},#{board.registeredDate})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(@Param("board") Board board);
 
@@ -23,11 +23,11 @@ public interface BoardMapper {
      * @return 모든 게시물정보
      */
     @Select("SELECT * FROM board")
-    @Results(id = "BoardMap", value = {
+    @Results(id="BoardMap", value = {
             @Result(property = "title", column = "board_title"),
             @Result(property = "content", column = "board_content"),
             @Result(property = "userId", column = "user_id"),
-            @Result(property = "registedDate", column = "registed_date")
+            @Result(property = "registeredDate", column = "registered_date")
     })
     List<Board> getAll();
 

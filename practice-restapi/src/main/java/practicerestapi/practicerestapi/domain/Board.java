@@ -12,12 +12,5 @@ public class Board {
     private String content;
     private int userId;
     private boolean enabled;
-    private Date registedDate;
-
-    public Board(String title, String content, int userId) {
-        this.title = title;
-        this.content = content;
-        this.userId = userId;
-        this.registedDate = new Date();
-    }
+    private Date registeredDate;
 }
