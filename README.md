@@ -12,4 +12,4 @@
 
 ## practice-restapi
 
-스프링부트, 웹, mybatis, mysql을 활용한 간단한 Restful API 서버 구현
+스프링부트, 웹, mybatis, mysql을 활용한 간단한 Restful API 게시판 서버 구현
