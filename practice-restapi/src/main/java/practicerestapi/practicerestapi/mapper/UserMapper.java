@@ -20,10 +20,12 @@ public interface UserMapper {
      * 모든유저 조회
      * @return 모든 유저정보
      */
-    @Select("SELECT * FROM user")
+    @Select("SELECT * FROM user WHERE enabled=0")
     @Results(id="UserMap", value = {
+            @Result(property = "id", column = "id"),
             @Result(property = "email", column = "user_email"),
-            @Result(property = "password", column = "user_password")
+            @Result(property = "password", column = "user_password"),
+            @Result(property = "boards", column = "id", many = @Many(select = "practicerestapi.practicerestapi.mapper.BoardMapper.getByUserId"))
     })
     List<User> getAll();
 

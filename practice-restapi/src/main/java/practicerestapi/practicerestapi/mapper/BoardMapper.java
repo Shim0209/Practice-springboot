@@ -22,7 +22,7 @@ public interface BoardMapper {
      * 모든 게시물 조회
      * @return 모든 게시물정보
      */
-    @Select("SELECT * FROM board")
+    @Select("SELECT * FROM board WHERE enabled=0")
     @Results(id="BoardMap", value = {
             @Result(property = "title", column = "board_title"),
             @Result(property = "content", column = "board_content"),

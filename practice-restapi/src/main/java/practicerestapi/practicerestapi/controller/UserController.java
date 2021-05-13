@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import practicerestapi.practicerestapi.domain.User;
 import practicerestapi.practicerestapi.mapper.UserMapper;
+import practicerestapi.practicerestapi.service.UserService;
 
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("")
     public int post(@RequestBody User user) {
         return userMapper.insert(user);
@@ -23,6 +27,7 @@ public class UserController {
     @GetMapping("")
     public List<User> getAll(){
         return userMapper.getAll();
+        //return userService.getAll();
     }
 
     @GetMapping("/{id}")
