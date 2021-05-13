@@ -18,7 +18,7 @@ public interface UserMapper {
 
     /**
      * 모든유저 조회
-     * @return 모든유저정보
+     * @return 모든 유저정보
      */
     @Select("SELECT * FROM user")
     @Results(id="UserMap", value = {
@@ -42,7 +42,6 @@ public interface UserMapper {
      * @return true = 성공 / false = 실패
      */
     @Update("UPDATE user SET user_email=#{user.email}, user_password=#{user.password} WHERE id=#{user.id}")
-    @ResultMap("UserMap")
     boolean update(@Param("user") User user);
 
     /**
@@ -52,4 +51,13 @@ public interface UserMapper {
      */
     @Delete("DELETE FROM user WHERE id = #{id}")
     boolean deleteById(@Param("id") int id);
+
+    /**
+     * 유저 비활성화
+     * @param id 비활성화할 유저의 테이블 id
+     * @return true = 성공 / false = 실패
+     * 서비스에서 해당유저에 관련된 모든 정보 비활성화 작업과 함께 사용할것.
+     */
+    @Update("UPDATE user SET enabled=false WHERE id = #{id}")
+    boolean disabled(@Param("id") int id);
 }
