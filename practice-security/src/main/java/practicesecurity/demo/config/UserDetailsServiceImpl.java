@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import practicesecurity.demo.Repository.MemberRepository;
 import practicesecurity.demo.domain.Member;
 
@@ -19,13 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
         Member getMember = memberRepository.findByEmail(email);
-
         if(getMember == null) {
             throw new UsernameNotFoundException("사용자 없음");
         }
-
         return new SecurityUser(getMember);
     }
 }

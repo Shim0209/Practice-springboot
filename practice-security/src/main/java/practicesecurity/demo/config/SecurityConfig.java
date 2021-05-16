@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 
         security.csrf().disable();
 
-        security.formLogin()
+        security.formLogin() //로그인 페이지를 제공하는 URL을 설정
                 .loginPage("/login").defaultSuccessUrl("/main", true)  // 로그인 페이지와 성공했을때 어디로 넘길래?
                 .loginProcessingUrl("/loginAction").defaultSuccessUrl("/main", true);    // 로그인 액션 프로세스 반드시 POST 그리고 성공시 URL
 
