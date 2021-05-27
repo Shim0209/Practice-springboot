@@ -3,18 +3,32 @@ package practicesecurity.demo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+@EnableWebSecurity // 필터 체인에 등록 (스프링 시큐리티 활성화)
+@EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소 접근시 권한 및 인증을 미리 체크
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    /* 스프링시큐리티 앞단 설정들을 할 수 있다.
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        // 여기에 접근 허용 설정을 해버리면 HttpSecurity 설정을 전부 무시해버린다.
+    }
+    */
+
+    /**
+     *  스프링시큐리티의 설정을 할 수 있다.
+     */
     @Override
     protected void configure(HttpSecurity security) throws Exception {
 
