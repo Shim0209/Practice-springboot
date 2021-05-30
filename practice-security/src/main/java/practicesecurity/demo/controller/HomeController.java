@@ -68,7 +68,6 @@ public class HomeController {
         ObjectMapper objectMapper = new ObjectMapper();
         OAuthToken oAuthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
 
-
         // 사용자 정보 조회
         RestTemplate rt2 = new RestTemplate();
 
